@@ -22,6 +22,6 @@ public record CreateOrderRequest(
          * List of items in the order request.
          * Must not be null.
          */
-        @NotNull List<OrderItemRequest> Items
+        @NotNull List<OrderItemRequest> items
 
         ) { }

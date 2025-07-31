@@ -32,7 +32,8 @@ public class OrderServiceApplication {
 
         String[] envVars = {
                 "PORT",
-                "SPRING_DATA_MONGODB_URI"
+                "SPRING_DATA_MONGODB_URI",
+                "INVENTORY_SERVICE_URL"
         };
 
         // Iterate through keys and set them as JVM system properties if found
