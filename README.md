@@ -2,13 +2,14 @@
 
 ---
 ### [Microservice 1: Product Service](https://github.com/Ochwada/MicroInventorySystem-Product)
-### [Microservice 2: Inventory Service](https://github.com/Ochwada/MicroInventorySystem-Inventory)
+### [Microservice 2: Inventory Service](https://github.com/Ochwada/MicroInventorySystem-Inventory) 
 ### [Microservice 3: Order Service](https://github.com/Ochwada/MicroInventorySystem-Order)
+
 ---
 
 ## Microservice 3: Order Service - Overview
 
-A critical component of a microservices-based inventory management system that handles the processing and management of 
+A core component of a microservices-based inventory management system that handles the processing and management of 
 customer orders. It validates product availability by interacting with the **Inventory-Service** and stores order 
 information in MongoDB Atlas. The service is designed with Spring Boot, utilizes Spring Data for MongoDB integration, 
 and is fully containerized using Docker (multi-stage builds) for efficient deployment.
@@ -35,7 +36,7 @@ Building an **Order microservice** that performs the following responsibilities:
 | `dotenv-java`                      | Loads environment variables from a `.env` file at runtime                     |
 
 #### Build Plugin
-```yaml
+```bash
 
 <build>
     <plugins>
