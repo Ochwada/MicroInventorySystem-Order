@@ -2,12 +2,8 @@ package com.ochwada.orderservice.controller;
 
 
 import com.ochwada.orderservice.dto.request.CreateOrderRequest;
-import com.ochwada.orderservice.dto.response.OrderLineItemResponse;
 import com.ochwada.orderservice.dto.response.OrderResponse;
 import com.ochwada.orderservice.service.OrderService;
-import com.ochwada.orderservice.service.client.InventoryClient;
-import com.ochwada.orderservice.service.impl.OrderServiceImpl;
-import com.ochwada.product.service.InventoryClient.InventoryRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
