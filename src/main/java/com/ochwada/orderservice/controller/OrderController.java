@@ -5,12 +5,12 @@ import com.ochwada.orderservice.dto.request.CreateOrderRequest;
 import com.ochwada.orderservice.dto.response.OrderLineItemResponse;
 import com.ochwada.orderservice.dto.response.OrderResponse;
 import com.ochwada.orderservice.service.OrderService;
+import com.ochwada.orderservice.service.client.InventoryClient;
+import com.ochwada.orderservice.service.impl.OrderServiceImpl;
+import com.ochwada.product.service.InventoryClient.InventoryRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class OrderController {
 
     private final OrderService service;
 
+
     /**
      * Retrieves all orders.
      *
@@ -50,8 +51,9 @@ public class OrderController {
      * @return the saved {@link OrderResponse}
      */
     @PostMapping
-    public OrderResponse createOrder(@Valid CreateOrderRequest request){
+    public OrderResponse createOrder(@Valid @RequestBody CreateOrderRequest request){
 
         return service.placeOrder(request);
     }
+
 }

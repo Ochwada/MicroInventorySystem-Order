@@ -55,6 +55,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public OrderResponse placeOrder(CreateOrderRequest request) {
+        // 1. Validate the stock
         for (OrderItemRequest item : request.items()) {
             int availableStock = client.getStockQuantity(item.productId());
 
@@ -65,15 +66,18 @@ public class OrderServiceImpl implements OrderService {
             }
         }
 
-        // Map request to Order entity
-        // this converts item DTOs to entities
+        // 2.  Map request to Order entity (this converts item DTOs to entities).
         Order order = mapper.toEntity(request);
 
-        // Save to repository
-        // ID + createdAt set automatically (handled by JPA)
+        // 3. Save to repository ( ID + createdAt set automatically (handled by JPA))
         Order savedOrder = repository.save(order);
 
-        // Map back to response DTO
+        //  4. Reduce stock in inventory
+        for (OrderItemRequest item : request.items()){
+            client.decreaseStock(item.productId(), item.quantity());
+        }
+
+        // 4. Map back to response DTO
         List<OrderLineItemResponse> itemResponses = savedOrder.getItems()
                 .stream()
                 .map(

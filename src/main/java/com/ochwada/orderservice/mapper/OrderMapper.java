@@ -35,6 +35,9 @@ public class OrderMapper {
 
     private final InventoryClient client;
 
+
+
+
     /**
      * Converts a CreateOrderRequest DTO into an Order entity.
      * The createdAt and id fields are not set here and should be assigned externally. (input)
@@ -43,6 +46,7 @@ public class OrderMapper {
      * @return an Order entity ready for persistence
      */
     public Order toEntity(CreateOrderRequest request) {
+
 
         List<OrderLineItem> items = request.items()
                 .stream()
@@ -53,7 +57,7 @@ public class OrderMapper {
                         )
                 ).toList();
 
-        return new Order(null, null, items); // id & createdAt set later
+        return new Order( items); // id & createdAt set later
     }
 
     /**

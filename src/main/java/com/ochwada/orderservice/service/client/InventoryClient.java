@@ -1,7 +1,4 @@
 package com.ochwada.orderservice.service.client;
-
-
-
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +24,7 @@ public class InventoryClient {
      * The HTTP client used to send requests to external services.
      */
     private final RestTemplate restTemplate;
+
 
     /**
      * The base URL of the inventory service.
@@ -66,4 +64,26 @@ public class InventoryClient {
 
         return  quantity != null ? quantity : 0;
     }
+
+    /**
+     * Sends a POST request to the inventory-service to reduce the current stock quantity.
+     *
+     * @param productId the ID of the product to decrease
+     * @param quantity the quantity to reduce from inventory
+     */
+    public void decreaseStock(Long productId, int quantity){
+        InventoryRequest request = new InventoryRequest(productId, quantity);
+
+        restTemplate.postForObject(
+                inventoryServiceUrl + "/api/inventory" + productId,
+                request,
+                Void.class
+        );
+    }
+
+    // =============================== RECORDS ============================
+    public record InventoryRequest(Long productId, int quantity) {}
+
+    // ====================================================================
+
 }

@@ -2,10 +2,11 @@ package com.ochwada.orderservice.model;
 
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.*;
 
 /**
@@ -33,6 +34,7 @@ public class Order {
     /**
      * The date and time when the order was created.
      */
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     /**
@@ -40,4 +42,8 @@ public class Order {
      */
     private List<OrderLineItem> items;
 
+    // Custom constructor for convenience - used in OrderMapper.toEntity
+    public Order(List<OrderLineItem> items) {
+        this.items = items;
+    }
 }
