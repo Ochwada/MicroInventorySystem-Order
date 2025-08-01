@@ -72,10 +72,22 @@ public class InventoryClient {
      * @param quantity the quantity to reduce from inventory
      */
     public void decreaseStock(Long productId, int quantity){
-        InventoryRequest request = new InventoryRequest(productId, quantity);
+        // Step 1: Get current stock from inventory service
 
+        int currentStock = getStockQuantity(productId);
+
+        if (currentStock < quantity) {
+            throw new IllegalArgumentException("Not enough stock to reduce for product ID: " + productId);
+        }
+
+        // Step 2: Calculate new stock
+        int newStock = currentStock - quantity;
+
+        InventoryRequest request = new InventoryRequest(productId, newStock);
+
+        // POST to inventory-service
         restTemplate.postForObject(
-                inventoryServiceUrl + "/api/inventory" + productId,
+                inventoryServiceUrl, // POST to /api/inventory
                 request,
                 Void.class
         );

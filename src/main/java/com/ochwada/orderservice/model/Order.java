@@ -2,7 +2,7 @@ package com.ochwada.orderservice.model;
 
 
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -34,7 +34,7 @@ public class Order {
     /**
      * The date and time when the order was created.
      */
-    @CreationTimestamp
+    @CreatedDate
     private LocalDateTime createdAt;
 
     /**

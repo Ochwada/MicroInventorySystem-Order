@@ -3,6 +3,7 @@ package com.ochwada.orderservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
  */
 
 @Configuration
+@EnableMongoAuditing  // Enables @CreatedDate for MongoDB
 public class AppConfig {
     /**
      * Creates and registers a {@link RestTemplate} bean.
